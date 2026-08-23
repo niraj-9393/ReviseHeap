@@ -54,7 +54,11 @@ export const ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Question: 'Question',
+  Revision: 'Revision',
+  Tag: 'Tag',
+  QuestionTag: 'QuestionTag'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -130,6 +134,53 @@ export const VerificationScalarFieldEnum = {
 } as const
 
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
+
+
+export const QuestionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  url: 'url',
+  platform: 'platform',
+  difficulty: 'difficulty',
+  userDifficulty: 'userDifficulty',
+  remark: 'remark',
+  solvedRemark: 'solvedRemark',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type QuestionScalarFieldEnum = (typeof QuestionScalarFieldEnum)[keyof typeof QuestionScalarFieldEnum]
+
+
+export const RevisionScalarFieldEnum = {
+  id: 'id',
+  questionId: 'questionId',
+  revisionCount: 'revisionCount',
+  revisionRemark: 'revisionRemark',
+  revisitedAt: 'revisitedAt'
+} as const
+
+export type RevisionScalarFieldEnum = (typeof RevisionScalarFieldEnum)[keyof typeof RevisionScalarFieldEnum]
+
+
+export const TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+export const QuestionTagScalarFieldEnum = {
+  questionId: 'questionId',
+  tagId: 'tagId'
+} as const
+
+export type QuestionTagScalarFieldEnum = (typeof QuestionTagScalarFieldEnum)[keyof typeof QuestionTagScalarFieldEnum]
 
 
 export const SortOrder = {
