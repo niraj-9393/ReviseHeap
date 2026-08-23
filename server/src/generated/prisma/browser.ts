@@ -37,3 +37,23 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model Question
+ * 
+ */
+export type Question = Prisma.QuestionModel
+/**
+ * Model Revision
+ * 
+ */
+export type Revision = Prisma.RevisionModel
+/**
+ * Model Tag
+ * 
+ */
+export type Tag = Prisma.TagModel
+/**
+ * Model QuestionTag
+ * 
+ */
+export type QuestionTag = Prisma.QuestionTagModel
