@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
 import { BrainCircuit, Moon, Sparkles } from "lucide-react";
+import { authClient } from "../lib/auth-client";
 
 const Signup = () => {
-  const API_URL = import.meta.env.VITE_API_URL;
 
-  const handleGoogleSignup = (): void => {
-    window.location.href = `${API_URL}/api/auth/google`;
+ const handleGoogleSignup = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "http://localhost:5173/dashboard",
+    });
   };
 
-  const handleGithubSignup = (): void => {
-    window.location.href = `${API_URL}/api/auth/github`;
+  const handleGithubSignup = async () => {
+    await authClient.signIn.social({
+      provider: "github",
+      callbackURL: "http://localhost:5173/dashboard",
+    });
   };
-
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-zinc-950 px-6 text-white">
       {/* Background Glow */}
