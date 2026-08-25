@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import router from "./router/question.routes.js";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./utils/auth.js";
 import cors from "cors"
@@ -14,9 +15,21 @@ app.use(cors({
   methods:["GET","POST","PUT","DELETE"]
 }))
 app.use(express.json());
+
+app.get("/", (_req, res) => {
+  res.json({ message: "TypeScript server is running" });
+});
+app.use('/api/question',router);
+app.get("/health", (_req, res) => {
+  res.json({ status: "ok" });
+});
 app.all("/api/auth/{*any}", toNodeHandler(auth));
 app.get('/all/user',alluser)
 
+app.post("/test", (req, res) => {
+  console.log("TEST ROUTE HIT");
+  res.json({ message: "working" });
+});
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
