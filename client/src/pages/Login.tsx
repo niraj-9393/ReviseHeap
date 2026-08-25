@@ -1,15 +1,21 @@
 import { Link } from "react-router-dom";
 import { BrainCircuit, Moon } from "lucide-react";
+import { authClient } from "../lib/auth-client";
 
 const Login = () => {
-  const API_URL = import.meta.env.VITE_API_URL;
 
-  const handleGoogleLogin = (): void => {
-    window.location.href = `${API_URL}/api/auth/google`;
+const handleGoogleLogin = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "http://localhost:5173/dashboard",
+    });
   };
 
-  const handleGithubLogin = (): void => {
-    window.location.href = `${API_URL}/api/auth/github`;
+  const handleGithubLogin = async () => {
+    await authClient.signIn.social({
+      provider: "github",
+      callbackURL: "http://localhost:5173/dashboard",
+    });
   };
 
   return (
