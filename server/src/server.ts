@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
-import router from "./router/question.routes.js";
+import questionRouter from "./router/question.routes.js";
+import tagRouter from "./router/tag.routes.js";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./utils/auth.js";
 import cors from "cors"
@@ -19,7 +20,8 @@ app.use(express.json());
 app.get("/", (_req, res) => {
   res.json({ message: "TypeScript server is running" });
 });
-app.use('/api/question',router);
+app.use('/api/question',questionRouter);
+app.use('/api/tags',tagRouter);
 app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });

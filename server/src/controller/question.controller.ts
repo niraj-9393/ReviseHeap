@@ -23,6 +23,7 @@ export const createQuestion = async (req: Request, res: Response) => {
         errors: result.error.issues,
       });
     }
+    // make question tag with the tagid and quesition id later..
     const question = await prisma.question.create({
       data: {
         ...result.data,
