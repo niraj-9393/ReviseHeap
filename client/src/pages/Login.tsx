@@ -12,10 +12,12 @@ const handleGoogleLogin = async () => {
   };
 
   const handleGithubLogin = async () => {
-    await authClient.signIn.social({
+    console.log("clicked")
+    const result = await authClient.signIn.social({
       provider: "github",
       callbackURL: "http://localhost:5173/dashboard",
     });
+    console.log("GitHub login result:", result);
   };
 
   return (
