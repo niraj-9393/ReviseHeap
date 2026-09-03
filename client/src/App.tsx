@@ -5,6 +5,7 @@ import Signup from "./pages/Register"
 import Dashboard from "./pages/Dashboard"
 
 function App() {
+
   return (
     <>
     <Routes>
