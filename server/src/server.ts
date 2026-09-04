@@ -14,15 +14,18 @@ app.use(cors({
   credentials:true,
   methods:["GET","POST","PUT","DELETE"]
 }))
-app.use(express.json());
 
+app.use(express.json());
 app.get("/", (_req, res) => {
   res.json({ message: "TypeScript server is running" });
 });
 app.use('/api/question',questionRouter);
 app.use('/api/tags',tagRouter);
 app.get("/health", (_req, res) => {
-  res.json({ status: "ok" });
+  console.log(_req);
+    console.log("HEALTH API CALLED");
+
+  res.json({status: "ok" });
 });
 app.all("/api/auth/{*any}", toNodeHandler(auth));
 app.get('/all/user',alluser)

@@ -31,6 +31,5 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         sendResponse(data);
     }
-
     return true;
 });
