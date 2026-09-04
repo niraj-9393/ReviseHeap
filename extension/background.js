@@ -1,5 +1,7 @@
+
 chrome.runtime.onMessage.addListener(
     (message, sender, sendResponse) => {
+
 
         if (message.type === "GET_DATA") {
 
@@ -17,26 +19,20 @@ chrome.runtime.onMessage.addListener(
                     try {
 
                         let data;
+                        let scriptFile;
+                        let messageType;
 
                         if (tab.url.includes("leetcode.com/problems/")) {
 
-                            data = await chrome.tabs.sendMessage(
-                                tab.id,
-                                {
-                                    type: "GET_LC_DATA"
-                                }
-                            );
+                            scriptFile = "scripts/leetcode.js";
+                            messageType = "GET_LC_DATA";
 
                         } else if (
                             tab.url.includes("geeksforgeeks.org/problems/")
                         ) {
 
-                            data = await chrome.tabs.sendMessage(
-                                tab.id,
-                                {
-                                    type: "GET_GFG_DATA"
-                                }
-                            );
+                            scriptFile = "scripts/gfg.js";
+                            messageType = "GET_GFG_DATA";
 
                         } else {
 
@@ -45,6 +41,36 @@ chrome.runtime.onMessage.addListener(
                             });
 
                             return;
+                        }
+
+                        try {
+
+                            data = await chrome.tabs.sendMessage(
+                                tab.id,
+                                {
+                                    type: messageType
+                                }
+                            );
+
+                        } catch (error) {
+
+                            console.log(
+                                "Content script not found. Injecting it..."
+                            );
+
+                            await chrome.scripting.executeScript({
+                                target: {
+                                    tabId: tab.id
+                                },
+                                files: [scriptFile]
+                            });
+
+                            data = await chrome.tabs.sendMessage(
+                                tab.id,
+                                {
+                                    type: messageType
+                                }
+                            );
                         }
 
                         console.log("Background received:", data);
@@ -63,6 +89,13 @@ chrome.runtime.onMessage.addListener(
             );
 
             return true;
+        }else if(message.type === "saveToDb"){
+            setTimeout(()=>{
+             sendResponse("saved✔️");
+            },3000)
+            return true;
         }
     }
+
 );
+
