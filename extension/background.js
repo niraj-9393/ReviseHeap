@@ -99,3 +99,4 @@ chrome.runtime.onMessage.addListener(
 
 );
 
+// i need to authanticate the extension for the db operations ok
