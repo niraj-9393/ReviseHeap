@@ -7,10 +7,14 @@ import { auth } from "./utils/auth.js";
 import cors from "cors"
 import { alluser } from "./controller/question.controller.js";
 
+
 const app = express();
 const port = process.env.PORT ?? 3000;
 app.use(cors({
-  origin:"http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+    "chrome-extension://oeheefffgjjiakgecidoadbefacacpim",
+  ],
   credentials:true,
   methods:["GET","POST","PUT","DELETE"]
 }))

@@ -25,7 +25,8 @@
 
 body {
   margin: 0;
-  width: 360px;
+  width: 380px;
+
   background: var(--bg);
   color: var(--text);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -163,8 +164,8 @@ textarea {
 
 textarea {
   resize: vertical;
-  min-height: 52px;
-  line-height: 1.45;
+  min-height: 40px;
+  line-height: 1.05;
 }
 
 input::placeholder,
@@ -263,4 +264,60 @@ button#addToSheet:focus-visible {
 ::-webkit-scrollbar-thumb {
   background: var(--border-focus);
   border-radius: 4px;
+}
+.tags {
+      min-height: 41px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 9px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--field);
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 9px;
+      border-radius: 6px;
+      background: #263244;
+      color: #dce6f2;
+      font: 12px monospace;
+      animation: tag-in 0.25s ease both;
+    }
+    .tag button {
+      display: grid;
+      place-items: center;
+      width: 15px;
+      height: 15px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: #9facbc;
+      cursor: pointer;
+    }
+    .tag button:hover {
+      color: #fff;
+      background: #4a596d;
+    }
+    .add-tag {
+      padding: 5px 8px;
+      border: 1px dashed #667386;
+      border-radius: 6px;
+      background: transparent;
+      color: #aab6c5;
+      font: 12px monospace;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    .add-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }#tags {
+  margin-bottom: 10px;
+  
 }

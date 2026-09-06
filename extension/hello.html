@@ -79,7 +79,12 @@
             placeholder="What did you learn from this problem?"
           ></textarea>
         </div>
-
+        <div class="field-group">
+          <label for="tags">Tags</label>
+          <div class="tags" id="tags">
+            <button class="add-tag" type="button" id="addTag">+ Add tag</button>
+          </div>
+        </div>
         <!-- Solved Remark -->
         <div class="form-group">
           <label for="solved-review">
@@ -88,9 +93,7 @@
           </label>
 
           <select id="solved-review" name="solved_review" required>
-            <option value="" disabled selected>
-              Select closest option
-            </option>
+            <option value="" disabled selected>Select closest option</option>
 
             <option value="instantly_solved">Instantly solved</option>
             <option value="solved_comfortably">Solved comfortably</option>

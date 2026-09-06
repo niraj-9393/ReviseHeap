@@ -5,7 +5,7 @@ import { prisma } from "../utils/prisma.js";
 export const createQuestion = async (req: Request, res: Response) => {
   try {
     const userId = req.userId;
-
+     
     if (!userId) {
       return res.status(401).json({
         success: false,
@@ -121,8 +121,8 @@ export const getAllQuestion = async (req: Request, res: Response) => {
 
     return res.status(200).json({
       success: true,
-      message: "Questions fetched successfully",
-      data: questions,
+      message: "Questions ....fetched .... successfully...",
+      data:questions
     });
   } catch (error) {
     console.error("Get all questions error:", error);
@@ -264,3 +264,9 @@ export const alluser = async (req: Request, res: Response) => {
   const user = await prisma.session.findMany();
   res.status(200).json({ userid: user[0]?.userId });
 };
+
+
+
+
+
+

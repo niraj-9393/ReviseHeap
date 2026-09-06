@@ -16,7 +16,6 @@ router.post("/", authMiddleware, createQuestion);
 router.get("/", authMiddleware, getAllQuestion);
 
 router.get("/:id", authMiddleware, getQuestion);
-
 router.post("/:id", authMiddleware, updateQuestion);
 
 router.get("/:id", authMiddleware, deleteQuestion);

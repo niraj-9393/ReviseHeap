@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // when btn clicked logic 
-   const addBtn = document.getElementById("addToSheet");
+const addBtn = document.getElementById("addToSheet");
 
 console.log(addBtn);
 

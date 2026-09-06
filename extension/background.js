@@ -90,13 +90,12 @@ chrome.runtime.onMessage.addListener(
 
             return true;
         }else if(message.type === "saveToDb"){
-            setTimeout(()=>{
-             sendResponse("saved✔️");
-            },3000)
-            return true;
-        }
+            sendResponse("done");
+        return true;
     }
-
+    }
 );
 
-// i need to authanticate the extension for the db operations ok
+
+
+

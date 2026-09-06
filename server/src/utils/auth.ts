@@ -4,10 +4,9 @@ import { prisma } from "./prisma.js";
 
 export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL,
-
   trustedOrigins: [
     "http://localhost:5173",
-    "chrome-extension://oeheefffgjjiakgecidoadbefacacpim"
+    "chrome-extension://oeheefffgjjiakgecidoadbefacacpim",
   ],
 
   database: prismaAdapter(prisma, {
