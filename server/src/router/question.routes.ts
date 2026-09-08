@@ -6,6 +6,7 @@ import {
   updateQuestion,
   getAllQuestion,
   getQuestion,
+  qestionSolved,
 } from "../controller/question.controller.js";
 import { authMiddleware } from "../utils/middleware.js";
 
@@ -15,6 +16,7 @@ router.post("/", authMiddleware, createQuestion);
 
 router.get("/", authMiddleware, getAllQuestion);
 
+router.post("/solved", authMiddleware, qestionSolved);
 router.get("/:id", authMiddleware, getQuestion);
 router.post("/:id", authMiddleware, updateQuestion);
 

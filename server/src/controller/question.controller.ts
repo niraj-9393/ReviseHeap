@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { createQuestionSchema } from "../types/question.types.js";
 import { prisma } from "../utils/prisma.js";
+import { success } from "zod";
 
 export const createQuestion = async (req: Request, res: Response) => {
   try {
@@ -265,7 +266,46 @@ export const alluser = async (req: Request, res: Response) => {
   res.status(200).json({ userid: user[0]?.userId });
 };
 
+export const qestionSolved = async(req:Request,res:Response)=>{
+    console.log("SOLVED ROUTE HIT")
+  try {
+    const userId = req.userId;
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "User is not authenticated",
+      });
+    }
+    const quetionTitle = req.body.title;
+    const quetionUrl = req.body.url;
+    const solved = await prisma.question.findFirst({
+      where:{
+        userId:userId,
+        name:quetionTitle,
+        url:quetionUrl
+      }
+    })
+    if(!solved){
+      return res.status(201).json({
+        success:true,
+        solved:false,
+        message:"quesion is not solved yet"
+      })
+    }
+    return res.status(200).json({
+      success:true,
+      solved:true,
+      message:"question already sovled "
+    })
+  } catch (error) {
+        console.error(" question issolved  error:", error);
 
+    return res.status(500).json({
+      success: false,
+      message: "Failed to see question solved or not ",
+    });
+  }
+}
 
 
 
