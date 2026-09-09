@@ -7,15 +7,15 @@ import {
   getAllQuestion,
   getQuestion,
   qestionSolved,
+  updateRevision,
 } from "../controller/question.controller.js";
 import { authMiddleware } from "../utils/middleware.js";
 
 const router: express.Router = express.Router();
 
 router.post("/", authMiddleware, createQuestion);
-
 router.get("/", authMiddleware, getAllQuestion);
-
+router.post("/revision", authMiddleware, updateRevision);
 router.post("/solved", authMiddleware, qestionSolved);
 router.get("/:id", authMiddleware, getQuestion);
 router.post("/:id", authMiddleware, updateQuestion);
