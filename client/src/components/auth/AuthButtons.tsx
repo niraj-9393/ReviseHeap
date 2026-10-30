@@ -1,4 +1,6 @@
-import { ArrowRight, Moon,  } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, LoaderCircle, Moon } from "lucide-react";
+import { authClient } from "../../lib/auth-client";
 
 interface AuthButtonsProps {
   variant?: "default" | "compact";
@@ -35,46 +37,69 @@ const GoogleIcon = () => {
 const AuthButtons = ({
   variant = "default",
 }: AuthButtonsProps) => {
-  const handleGoogleLogin = (): void => {
-    // window.location.href =
-    //   "http://localhost:5000/api/auth/google";
-  };
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [authError, setAuthError] = useState("");
 
-  const handleGithubLogin = (): void => {
-    // window.location.href =
-    //   "http://localhost:5000/api/auth/github";
+  const handleSocialLogin = async (provider: "google" | "github") => {
+    setIsSigningIn(true);
+    setAuthError("");
+
+    try {
+      const { error } = await authClient.signIn.social({
+        provider,
+        callbackURL: `${window.location.origin}/dashboard`,
+      });
+
+      if (error) {
+        setAuthError(error.message || "Could not start sign-in.");
+        setIsSigningIn(false);
+      }
+    } catch (error) {
+      console.error("Could not start social sign-in:", error);
+      setAuthError(
+        error instanceof Error ? error.message : "Could not start sign-in.",
+      );
+      setIsSigningIn(false);
+    }
   };
 
   return (
-    <div
-      className={`flex gap-3 ${
-        variant === "compact"
-          ? "flex-col"
-          : "flex-col sm:flex-row"
-      }`}
-    >
-      <button
-        onClick={handleGoogleLogin}
-        className="flex items-center justify-center gap-3 rounded-xl bg-white px-6 py-3.5 font-medium text-black transition hover:bg-zinc-200"
+    <>
+      <div
+        className={`flex gap-3 ${
+          variant === "compact" ? "flex-col" : "flex-col sm:flex-row"
+        }`}
       >
-        <GoogleIcon />
+        <button
+          type="button"
+          onClick={() => void handleSocialLogin("google")}
+          disabled={isSigningIn}
+          className="flex items-center justify-center gap-3 rounded-xl bg-white px-6 py-3.5 font-medium text-black transition hover:bg-zinc-200 disabled:cursor-wait disabled:opacity-60"
+        >
+          {isSigningIn ? <LoaderCircle size={20} className="animate-spin" /> : <GoogleIcon />}
 
-        Continue with Google
+          Continue with Google
 
-        {variant === "default" && (
-          <ArrowRight size={18} />
-        )}
-      </button>
+          {variant === "default" && <ArrowRight size={18} />}
+        </button>
 
-      <button
-        onClick={handleGithubLogin}
-        className="flex items-center justify-center gap-3 rounded-xl border border-zinc-700 bg-zinc-900 px-6 py-3.5 font-medium transition hover:bg-zinc-800"
-      >
-        <Moon size={20} />
+        <button
+          type="button"
+          onClick={() => void handleSocialLogin("github")}
+          disabled={isSigningIn}
+          className="flex items-center justify-center gap-3 rounded-xl border border-zinc-700 bg-zinc-900 px-6 py-3.5 font-medium transition hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-60"
+        >
+          <Moon size={20} />
 
-        Continue with GitHub
-      </button>
-    </div>
+          Continue with GitHub
+        </button>
+      </div>
+      {authError && (
+        <p className="mt-3 text-sm text-red-400" role="alert">
+          {authError}
+        </p>
+      )}
+    </>
   );
 };
 

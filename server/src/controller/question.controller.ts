@@ -267,6 +267,18 @@ export const getAllQuestion = async (req: Request, res: Response) => {
       where: {
         userId,
       },
+      include: {
+        revisions: {
+          orderBy: {
+            revisionCount: "desc",
+          },
+        },
+        tags: {
+          include: {
+            tag: true,
+          },
+        },
+      },
       orderBy: {
         createdAt: "desc",
       },
@@ -459,3 +471,4 @@ export const qestionSolved = async (req: Request, res: Response) => {
     });
   }
 };
+

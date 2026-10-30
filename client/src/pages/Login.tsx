@@ -1,23 +1,33 @@
 import { Link } from "react-router-dom";
-import { BrainCircuit, Moon } from "lucide-react";
+import { BrainCircuit, LoaderCircle, Moon } from "lucide-react";
+import { useState } from "react";
 import { authClient } from "../lib/auth-client";
 
 const Login = () => {
+  const [authError, setAuthError] = useState("");
+  const [isSigningIn, setIsSigningIn] = useState(false);
 
-const handleGoogleLogin = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "http://localhost:5173/dashboard",
-    });
-  };
+  const handleSocialLogin = async (provider: "google" | "github") => {
+    setAuthError("");
+    setIsSigningIn(true);
 
-  const handleGithubLogin = async () => {
-    console.log("clicked")
-    const result = await authClient.signIn.social({
-      provider: "github",
-      callbackURL: "http://localhost:5173/dashboard",
-    });
-    console.log("GitHub login result:", result);
+    try {
+      const { error } = await authClient.signIn.social({
+        provider,
+        callbackURL: `${window.location.origin}/dashboard`,
+      });
+
+      if (error) {
+        setAuthError(error.message || "Could not start sign-in.");
+        setIsSigningIn(false);
+      }
+    } catch (error) {
+      console.error("Could not start social sign-in:", error);
+      setAuthError(
+        error instanceof Error ? error.message : "Could not start sign-in.",
+      );
+      setIsSigningIn(false);
+    }
   };
 
   return (
@@ -57,23 +67,36 @@ const handleGoogleLogin = async () => {
           {/* Auth Buttons */}
           <div className="mt-8 space-y-3">
             <button
-              onClick={handleGoogleLogin}
-              className="flex w-full items-center justify-center gap-3 rounded-xl bg-white px-5 py-3.5 font-medium text-black transition hover:bg-zinc-200"
+              type="button"
+              onClick={() => void handleSocialLogin("google")}
+              disabled={isSigningIn}
+              className="flex w-full items-center justify-center gap-3 rounded-xl bg-white px-5 py-3.5 font-medium text-black transition hover:bg-zinc-200 disabled:cursor-wait disabled:opacity-60"
             >
-              <GoogleIcon />
+              {isSigningIn ? (
+                <LoaderCircle className="animate-spin" size={20} />
+              ) : (
+                <GoogleIcon />
+              )}
 
               Continue with Google
             </button>
 
             <button
-              onClick={handleGithubLogin}
-              className="flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-700 bg-zinc-950 px-5 py-3.5 font-medium text-white transition hover:bg-zinc-800"
+              type="button"
+              onClick={() => void handleSocialLogin("github")}
+              disabled={isSigningIn}
+              className="flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-700 bg-zinc-950 px-5 py-3.5 font-medium text-white transition hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-60"
             >
               <Moon size={20} />
 
               Continue with GitHub
             </button>
           </div>
+          {authError && (
+            <p className="mt-4 text-center text-sm text-red-400" role="alert">
+              {authError}
+            </p>
+          )}
 
           {/* Signup */}
           <p className="mt-8 text-center text-sm text-zinc-400">

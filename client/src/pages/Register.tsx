@@ -1,21 +1,33 @@
 import { Link } from "react-router-dom";
-import { BrainCircuit, Moon, Sparkles } from "lucide-react";
+import { BrainCircuit, LoaderCircle, Moon, Sparkles } from "lucide-react";
+import { useState } from "react";
 import { authClient } from "../lib/auth-client";
 
 const Signup = () => {
+  const [authError, setAuthError] = useState("");
+  const [isSigningIn, setIsSigningIn] = useState(false);
 
- const handleGoogleSignup = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "http://localhost:5173/dashboard",
-    });
-  };
+  const handleSocialSignup = async (provider: "google" | "github") => {
+    setAuthError("");
+    setIsSigningIn(true);
 
-  const handleGithubSignup = async () => {
-    await authClient.signIn.social({
-      provider: "github",
-      callbackURL: "http://localhost:5173/dashboard",
-    });
+    try {
+      const { error } = await authClient.signIn.social({
+        provider,
+        callbackURL: `${window.location.origin}/dashboard`,
+      });
+
+      if (error) {
+        setAuthError(error.message || "Could not start sign-up.");
+        setIsSigningIn(false);
+      }
+    } catch (error) {
+      console.error("Could not start social sign-up:", error);
+      setAuthError(
+        error instanceof Error ? error.message : "Could not start sign-up.",
+      );
+      setIsSigningIn(false);
+    }
   };
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-zinc-950 px-6 text-white">
@@ -59,23 +71,36 @@ const Signup = () => {
           {/* Auth Buttons */}
           <div className="mt-8 space-y-3">
             <button
-              onClick={handleGoogleSignup}
-              className="flex w-full items-center justify-center gap-3 rounded-xl bg-white px-5 py-3.5 font-medium text-black transition hover:bg-zinc-200"
+              type="button"
+              onClick={() => void handleSocialSignup("google")}
+              disabled={isSigningIn}
+              className="flex w-full items-center justify-center gap-3 rounded-xl bg-white px-5 py-3.5 font-medium text-black transition hover:bg-zinc-200 disabled:cursor-wait disabled:opacity-60"
             >
-              <GoogleIcon />
+              {isSigningIn ? (
+                <LoaderCircle className="animate-spin" size={20} />
+              ) : (
+                <GoogleIcon />
+              )}
 
               Sign up with Google
             </button>
 
             <button
-              onClick={handleGithubSignup}
-              className="flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-700 bg-zinc-950 px-5 py-3.5 font-medium text-white transition hover:bg-zinc-800"
+              type="button"
+              onClick={() => void handleSocialSignup("github")}
+              disabled={isSigningIn}
+              className="flex w-full items-center justify-center gap-3 rounded-xl border border-zinc-700 bg-zinc-950 px-5 py-3.5 font-medium text-white transition hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-60"
             >
               <Moon size={20} />
 
               Sign up with GitHub
             </button>
           </div>
+          {authError && (
+            <p className="mt-4 text-center text-sm text-red-400" role="alert">
+              {authError}
+            </p>
+          )}
 
           {/* Login */}
           <p className="mt-8 text-center text-sm text-zinc-400">
