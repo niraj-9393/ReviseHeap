@@ -10,6 +10,7 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/landing/Navbar";
 import "./Dashboard.css";
 
@@ -39,6 +40,7 @@ type SortOrder = "newest" | "oldest" | "most-revised" | "least-revised";
 const API_URL = "http://localhost:5000/api/question";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [questions, setQuestions] = useState<Question[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
@@ -167,12 +169,10 @@ const Dashboard = () => {
             <button
               type="button"
               className="migration-button"
-              title="Sheet import is not available yet"
-              disabled
+              onClick={() => navigate("/dashboard/import")}
             >
               <FileUp size={16} />
               Migrate existing sheet
-              <span>Coming soon</span>
             </button>
           </div>
 
