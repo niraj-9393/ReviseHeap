@@ -34,7 +34,7 @@ const ImportUpload = () => {
     if(!sheetUrl){
       console.log("paste a google sheet url")
     }
-    const response = await axios.post(`${backendUrl}/api/migrate/googlesheet`,
+    const response = await axios.post(`${backendUrl}/api/migrate/googleSheet/upload`,
       {googleSheetUrl:sheetUrl},
       {withCredentials:true}
     )

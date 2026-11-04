@@ -202,6 +202,7 @@ export type UserWhereInput = {
   accounts?: Prisma.AccountListRelationFilter
   questions?: Prisma.QuestionListRelationFilter
   tags?: Prisma.TagListRelationFilter
+  migrateQuestions?: Prisma.MigrateQuestionsListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -216,6 +217,7 @@ export type UserOrderByWithRelationInput = {
   accounts?: Prisma.AccountOrderByRelationAggregateInput
   questions?: Prisma.QuestionOrderByRelationAggregateInput
   tags?: Prisma.TagOrderByRelationAggregateInput
+  migrateQuestions?: Prisma.MigrateQuestionsOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -233,6 +235,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   accounts?: Prisma.AccountListRelationFilter
   questions?: Prisma.QuestionListRelationFilter
   tags?: Prisma.TagListRelationFilter
+  migrateQuestions?: Prisma.MigrateQuestionsListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -273,6 +276,7 @@ export type UserCreateInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   questions?: Prisma.QuestionCreateNestedManyWithoutUserInput
   tags?: Prisma.TagCreateNestedManyWithoutUserInput
+  migrateQuestions?: Prisma.MigrateQuestionsCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -287,6 +291,7 @@ export type UserUncheckedCreateInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutUserInput
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
+  migrateQuestions?: Prisma.MigrateQuestionsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -301,6 +306,7 @@ export type UserUpdateInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   questions?: Prisma.QuestionUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUpdateManyWithoutUserNestedInput
+  migrateQuestions?: Prisma.MigrateQuestionsUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -315,6 +321,7 @@ export type UserUncheckedUpdateInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   questions?: Prisma.QuestionUncheckedUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
+  migrateQuestions?: Prisma.MigrateQuestionsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -454,6 +461,20 @@ export type UserUpdateOneRequiredWithoutTagsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTagsInput, Prisma.UserUpdateWithoutTagsInput>, Prisma.UserUncheckedUpdateWithoutTagsInput>
 }
 
+export type UserCreateNestedOneWithoutMigrateQuestionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMigrateQuestionsInput, Prisma.UserUncheckedCreateWithoutMigrateQuestionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMigrateQuestionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMigrateQuestionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMigrateQuestionsInput, Prisma.UserUncheckedCreateWithoutMigrateQuestionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMigrateQuestionsInput
+  upsert?: Prisma.UserUpsertWithoutMigrateQuestionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMigrateQuestionsInput, Prisma.UserUpdateWithoutMigrateQuestionsInput>, Prisma.UserUncheckedUpdateWithoutMigrateQuestionsInput>
+}
+
 export type UserCreateWithoutSessionsInput = {
   id: string
   name: string
@@ -465,6 +486,7 @@ export type UserCreateWithoutSessionsInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   questions?: Prisma.QuestionCreateNestedManyWithoutUserInput
   tags?: Prisma.TagCreateNestedManyWithoutUserInput
+  migrateQuestions?: Prisma.MigrateQuestionsCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -478,6 +500,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutUserInput
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
+  migrateQuestions?: Prisma.MigrateQuestionsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -507,6 +530,7 @@ export type UserUpdateWithoutSessionsInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   questions?: Prisma.QuestionUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUpdateManyWithoutUserNestedInput
+  migrateQuestions?: Prisma.MigrateQuestionsUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -520,6 +544,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   questions?: Prisma.QuestionUncheckedUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
+  migrateQuestions?: Prisma.MigrateQuestionsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -533,6 +558,7 @@ export type UserCreateWithoutAccountsInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   questions?: Prisma.QuestionCreateNestedManyWithoutUserInput
   tags?: Prisma.TagCreateNestedManyWithoutUserInput
+  migrateQuestions?: Prisma.MigrateQuestionsCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -546,6 +572,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutUserInput
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
+  migrateQuestions?: Prisma.MigrateQuestionsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -575,6 +602,7 @@ export type UserUpdateWithoutAccountsInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   questions?: Prisma.QuestionUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUpdateManyWithoutUserNestedInput
+  migrateQuestions?: Prisma.MigrateQuestionsUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -588,6 +616,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   questions?: Prisma.QuestionUncheckedUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
+  migrateQuestions?: Prisma.MigrateQuestionsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutQuestionsInput = {
@@ -601,6 +630,7 @@ export type UserCreateWithoutQuestionsInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   tags?: Prisma.TagCreateNestedManyWithoutUserInput
+  migrateQuestions?: Prisma.MigrateQuestionsCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutQuestionsInput = {
@@ -614,6 +644,7 @@ export type UserUncheckedCreateWithoutQuestionsInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
+  migrateQuestions?: Prisma.MigrateQuestionsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutQuestionsInput = {
@@ -643,6 +674,7 @@ export type UserUpdateWithoutQuestionsInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUpdateManyWithoutUserNestedInput
+  migrateQuestions?: Prisma.MigrateQuestionsUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutQuestionsInput = {
@@ -656,6 +688,7 @@ export type UserUncheckedUpdateWithoutQuestionsInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
+  migrateQuestions?: Prisma.MigrateQuestionsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTagsInput = {
@@ -669,6 +702,7 @@ export type UserCreateWithoutTagsInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   questions?: Prisma.QuestionCreateNestedManyWithoutUserInput
+  migrateQuestions?: Prisma.MigrateQuestionsCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTagsInput = {
@@ -682,6 +716,7 @@ export type UserUncheckedCreateWithoutTagsInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutUserInput
+  migrateQuestions?: Prisma.MigrateQuestionsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTagsInput = {
@@ -711,6 +746,7 @@ export type UserUpdateWithoutTagsInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   questions?: Prisma.QuestionUpdateManyWithoutUserNestedInput
+  migrateQuestions?: Prisma.MigrateQuestionsUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTagsInput = {
@@ -724,6 +760,79 @@ export type UserUncheckedUpdateWithoutTagsInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   questions?: Prisma.QuestionUncheckedUpdateManyWithoutUserNestedInput
+  migrateQuestions?: Prisma.MigrateQuestionsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutMigrateQuestionsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  questions?: Prisma.QuestionCreateNestedManyWithoutUserInput
+  tags?: Prisma.TagCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMigrateQuestionsInput = {
+  id: string
+  name: string
+  email: string
+  emailVerified?: boolean
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutUserInput
+  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMigrateQuestionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMigrateQuestionsInput, Prisma.UserUncheckedCreateWithoutMigrateQuestionsInput>
+}
+
+export type UserUpsertWithoutMigrateQuestionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMigrateQuestionsInput, Prisma.UserUncheckedUpdateWithoutMigrateQuestionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMigrateQuestionsInput, Prisma.UserUncheckedCreateWithoutMigrateQuestionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMigrateQuestionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMigrateQuestionsInput, Prisma.UserUncheckedUpdateWithoutMigrateQuestionsInput>
+}
+
+export type UserUpdateWithoutMigrateQuestionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  questions?: Prisma.QuestionUpdateManyWithoutUserNestedInput
+  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMigrateQuestionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  questions?: Prisma.QuestionUncheckedUpdateManyWithoutUserNestedInput
+  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -736,6 +845,7 @@ export type UserCountOutputType = {
   accounts: number
   questions: number
   tags: number
+  migrateQuestions: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -743,6 +853,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   questions?: boolean | UserCountOutputTypeCountQuestionsArgs
   tags?: boolean | UserCountOutputTypeCountTagsArgs
+  migrateQuestions?: boolean | UserCountOutputTypeCountMigrateQuestionsArgs
 }
 
 /**
@@ -783,6 +894,13 @@ export type UserCountOutputTypeCountTagsArgs<ExtArgs extends runtime.Types.Exten
   where?: Prisma.TagWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMigrateQuestionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MigrateQuestionsWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -796,6 +914,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   questions?: boolean | Prisma.User$questionsArgs<ExtArgs>
   tags?: boolean | Prisma.User$tagsArgs<ExtArgs>
+  migrateQuestions?: boolean | Prisma.User$migrateQuestionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -835,6 +954,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   questions?: boolean | Prisma.User$questionsArgs<ExtArgs>
   tags?: boolean | Prisma.User$tagsArgs<ExtArgs>
+  migrateQuestions?: boolean | Prisma.User$migrateQuestionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -847,6 +967,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     accounts: Prisma.$AccountPayload<ExtArgs>[]
     questions: Prisma.$QuestionPayload<ExtArgs>[]
     tags: Prisma.$TagPayload<ExtArgs>[]
+    migrateQuestions: Prisma.$MigrateQuestionsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1254,6 +1375,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   questions<T extends Prisma.User$questionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$questionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tags<T extends Prisma.User$tagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  migrateQuestions<T extends Prisma.User$migrateQuestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$migrateQuestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MigrateQuestionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1776,6 +1898,30 @@ export type User$tagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   take?: number
   skip?: number
   distinct?: Prisma.TagScalarFieldEnum | Prisma.TagScalarFieldEnum[]
+}
+
+/**
+ * User.migrateQuestions
+ */
+export type User$migrateQuestionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MigrateQuestions
+   */
+  select?: Prisma.MigrateQuestionsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MigrateQuestions
+   */
+  omit?: Prisma.MigrateQuestionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MigrateQuestionsInclude<ExtArgs> | null
+  where?: Prisma.MigrateQuestionsWhereInput
+  orderBy?: Prisma.MigrateQuestionsOrderByWithRelationInput | Prisma.MigrateQuestionsOrderByWithRelationInput[]
+  cursor?: Prisma.MigrateQuestionsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MigrateQuestionsScalarFieldEnum | Prisma.MigrateQuestionsScalarFieldEnum[]
 }
 
 /**

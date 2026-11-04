@@ -81,3 +81,8 @@ export type Tag = Prisma.TagModel
  * 
  */
 export type QuestionTag = Prisma.QuestionTagModel
+/**
+ * Model MigrateQuestions
+ * 
+ */
+export type MigrateQuestions = Prisma.MigrateQuestionsModel

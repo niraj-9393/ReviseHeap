@@ -58,7 +58,8 @@ export const ModelName = {
   Question: 'Question',
   Revision: 'Revision',
   Tag: 'Tag',
-  QuestionTag: 'QuestionTag'
+  QuestionTag: 'QuestionTag',
+  MigrateQuestions: 'MigrateQuestions'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -181,6 +182,19 @@ export const QuestionTagScalarFieldEnum = {
 } as const
 
 export type QuestionTagScalarFieldEnum = (typeof QuestionTagScalarFieldEnum)[keyof typeof QuestionTagScalarFieldEnum]
+
+
+export const MigrateQuestionsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  url: 'url',
+  platform: 'platform',
+  difficulty: 'difficulty',
+  remark: 'remark',
+  userId: 'userId'
+} as const
+
+export type MigrateQuestionsScalarFieldEnum = (typeof MigrateQuestionsScalarFieldEnum)[keyof typeof MigrateQuestionsScalarFieldEnum]
 
 
 export const SortOrder = {

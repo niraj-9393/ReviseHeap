@@ -17,10 +17,11 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  sessions  Session[]
-  accounts  Account[]
-  questions Question[]
-  tags      Tag[]
+  sessions         Session[]
+  accounts         Account[]
+  questions        Question[]
+  tags             Tag[]
+  migrateQuestions MigrateQuestions[]
 
   @@unique([email])
   @@map("user")
@@ -138,4 +139,19 @@ model QuestionTag {
 
   @@id([questionId, tagId])
   @@index([tagId])
+}
+
+model MigrateQuestions {
+  id         String  @id @default(uuid())
+  name       String?
+  url        String
+  platform   String?
+  difficulty String?
+  remark     String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, url])
+  @@index([userId])
 }

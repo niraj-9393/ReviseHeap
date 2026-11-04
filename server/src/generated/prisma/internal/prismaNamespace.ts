@@ -404,7 +404,8 @@ export const ModelName = {
   Question: 'Question',
   Revision: 'Revision',
   Tag: 'Tag',
-  QuestionTag: 'QuestionTag'
+  QuestionTag: 'QuestionTag',
+  MigrateQuestions: 'MigrateQuestions'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -420,7 +421,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "question" | "revision" | "tag" | "questionTag"
+    modelProps: "user" | "session" | "account" | "verification" | "question" | "revision" | "tag" | "questionTag" | "migrateQuestions"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1016,6 +1017,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MigrateQuestions: {
+      payload: Prisma.$MigrateQuestionsPayload<ExtArgs>
+      fields: Prisma.MigrateQuestionsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MigrateQuestionsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MigrateQuestionsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MigrateQuestionsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MigrateQuestionsPayload>
+        }
+        findFirst: {
+          args: Prisma.MigrateQuestionsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MigrateQuestionsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MigrateQuestionsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MigrateQuestionsPayload>
+        }
+        findMany: {
+          args: Prisma.MigrateQuestionsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MigrateQuestionsPayload>[]
+        }
+        create: {
+          args: Prisma.MigrateQuestionsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MigrateQuestionsPayload>
+        }
+        createMany: {
+          args: Prisma.MigrateQuestionsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MigrateQuestionsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MigrateQuestionsPayload>[]
+        }
+        delete: {
+          args: Prisma.MigrateQuestionsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MigrateQuestionsPayload>
+        }
+        update: {
+          args: Prisma.MigrateQuestionsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MigrateQuestionsPayload>
+        }
+        deleteMany: {
+          args: Prisma.MigrateQuestionsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MigrateQuestionsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MigrateQuestionsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MigrateQuestionsPayload>[]
+        }
+        upsert: {
+          args: Prisma.MigrateQuestionsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MigrateQuestionsPayload>
+        }
+        aggregate: {
+          args: Prisma.MigrateQuestionsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMigrateQuestions>
+        }
+        groupBy: {
+          args: Prisma.MigrateQuestionsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MigrateQuestionsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MigrateQuestionsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MigrateQuestionsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1159,6 +1234,19 @@ export const QuestionTagScalarFieldEnum = {
 } as const
 
 export type QuestionTagScalarFieldEnum = (typeof QuestionTagScalarFieldEnum)[keyof typeof QuestionTagScalarFieldEnum]
+
+
+export const MigrateQuestionsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  url: 'url',
+  platform: 'platform',
+  difficulty: 'difficulty',
+  remark: 'remark',
+  userId: 'userId'
+} as const
+
+export type MigrateQuestionsScalarFieldEnum = (typeof MigrateQuestionsScalarFieldEnum)[keyof typeof MigrateQuestionsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1412,6 +1500,7 @@ export type GlobalOmitConfig = {
   revision?: Prisma.RevisionOmit
   tag?: Prisma.TagOmit
   questionTag?: Prisma.QuestionTagOmit
+  migrateQuestions?: Prisma.MigrateQuestionsOmit
 }
 
 /* Types for Logging */
